@@ -1,10 +1,10 @@
-from sqlalchemy import String, Boolean ,Integer ,Time ,ForeignKey ,Float ,Array,DateTime
-from sqlalchemy.orm import Mapped , mapped_column
-from app.models.base import Base
+from sqlalchemy import String, Boolean ,Integer ,Time ,ForeignKey ,Float ,ARRAY,DateTime
+from sqlalchemy.orm import Mapped , mapped_column,relationship
+from .base import Base
 from datetime import time ,datetime
 
 
-class commande(Base):
+class Commande(Base):
     __tablename__="commande"
     uid_commande: Mapped[str] = mapped_column(String, primary_key=True)
     uid_resto: Mapped[str] = mapped_column(String, ForeignKey("restaurant.uid_resto"), nullable=False)
@@ -20,8 +20,8 @@ class commande(Base):
     mail_client: Mapped[str] = mapped_column(String(100), nullable=False)
 
     date_de_creation: Mapped[datetime] = mapped_column(DateTime, nullable=False)
-    
-    #Relationships
+
+    #quand tu tapes ma_ligne.commande  depuis un article, Python te renvoie une seule commande unique
     lignes: Mapped[list["LigneCommande"]] = relationship("LigneCommande", back_populates="commande")
 
 

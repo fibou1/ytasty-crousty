@@ -1,6 +1,6 @@
 from sqlalchemy import String, Boolean ,Integer ,Time ,ForeignKey ,Float ,ARRAY
 from sqlalchemy.orm import Mapped , mapped_column
-from app.models.base import Base
+from .base import Base
 from datetime import time
 
 class User(Base):
