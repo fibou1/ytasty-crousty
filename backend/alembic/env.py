@@ -7,7 +7,7 @@ from alembic import context
 import os
 import sys
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(BASE_DIR, "backend"))
+sys.path.insert(0, BASE_DIR)
 from app.models.base import Base
 # On importe les modèles pour que Base.metadata les connaisse tous :
 import app.models.restaurant
