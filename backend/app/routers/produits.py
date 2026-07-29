@@ -27,3 +27,18 @@ def ajouter_burger(burger: BurgerModele):
     burgers.append(burger_dict)
     return {"message": "Burger ajouté avec succès", "burger": burger_dict}  
 
+
+
+@app.get("/test-db")
+def test_database_connection (db: Session = Depends(get_db)):
+    try:
+        db.execute(text("SELECT 1"))
+        return {"status": "success"}
+    
+    except Exception as e:
+        raise HTTPException(
+         status_code=500, 
+         detail=f"Erreur de connexion : {str(e)}"
+            )
+    
+
