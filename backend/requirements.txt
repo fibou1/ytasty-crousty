@@ -3,3 +3,6 @@ uvicorn[standard]==0.30.1
 sqlalchemy>=2.0.0
 psycopg2-binary>=2.9.0
 alembic==1.18.5
+pydantic
+Passlib==1.7.4
+python-jose[cryptography]
