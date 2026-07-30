@@ -20,11 +20,7 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 
-#token = jwt.encode({'key': 'value'}, 'secret', algorithm='HS256')
-#u'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJ2YWx1ZSJ9.FG-8UppwHaFp1LgRYQQeS6EDQF7_6-bMFegNucHjmWg'
 
-# jwt.decode(token, 'secret', algorithms=['HS256'])
-#{u'key': u'value'}
 def create_access_token(data: dict) -> str:
     #le dictionnaire data contient les informations que l'on souhaite encoder dans le token (ex: l'ID de l'utilisateur, son rôle, etc.)
     to_encode = data.copy()
@@ -43,6 +39,7 @@ def decode_access_token(token: str) -> dict:
     try:
           token_check= jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
           return token_check
+          print("token est validé")
     except JWTError:
         raise HTTPException(status_code=401, detail="Token invalide ou expiré")
 

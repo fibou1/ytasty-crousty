@@ -4,10 +4,12 @@ from sqlalchemy.orm import Session
 from sqlalchemy import text
 from app.routers.produits import routeur 
 from app.database import get_db
+from app.routers.auth import routeur2 
 
 app = FastAPI()
 app.include_router(routeur, prefix="/produits")
-
+app.include_router(routeur2)
+    
 @app.get("/health") 
 def health_status():
     return {"status": "healthy"}

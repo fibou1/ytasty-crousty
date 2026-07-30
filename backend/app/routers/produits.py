@@ -1,5 +1,8 @@
 from fastapi import FastAPI
-from fastapi import APIRouter
+from fastapi import APIRouter,Depends , HTTPException
+from sqlalchemy.orm import Session
+from sqlalchemy import text
+from app.database import get_db
 from pydantic import BaseModel
 
 burgers = [
@@ -29,7 +32,7 @@ def ajouter_burger(burger: BurgerModele):
 
 
 
-@app.get("/test-db")
+@routeur.get("/test-db")
 def test_database_connection (db: Session = Depends(get_db)):
     try:
         db.execute(text("SELECT 1"))
@@ -40,5 +43,5 @@ def test_database_connection (db: Session = Depends(get_db)):
          status_code=500, 
          detail=f"Erreur de connexion : {str(e)}"
             )
-    
+        
 
