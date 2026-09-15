@@ -1,2 +1,6 @@
 .env
 NOTES.md
+.venv/
+__pycache__/
+*.pyc
+backend/app/.venv/
